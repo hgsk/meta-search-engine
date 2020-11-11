@@ -1,21 +1,33 @@
 <html>
-<div class="row column header" id="wikiApp">
-  <h1 class="cover-heading">Wikipedia Search <i class="fa fa-search"></i></h1>
-  <div class="medium-6 medium-offset-3 ctrl">
-    <form class="searchForm" @submit.prevent="submitSearch">
-      <input type="text" v-model="searchQuery" placeholder="Type here and press enter">
-      <span v-show="searchQuery" class="removeInput" @click="removeSearchQuery">+</span>
-    </form>
-    <a class="raised-button ink" @click="submitSearch"><i class="fa fa-search"></i> Search</a>
-    <a class="raised-button ink" href="http://en.wikipedia.org/wiki/Special:Random" target="_blank"><i class="fa fa-random"></i> Random Article</a>
-  </div>
-  <div class="searchResult" v-show="isResult" transition="expand">
-    <a href="http://en.wikipedia.org/?curid={{ elem.pageid }}" v-for="elem in wikiObj">
-      <div class="medium-8 medium-offset-2 columns card">
-        <h1 class="text-headline">{{ elem.title }}</h1>
-        <p class="text-body-1">{{ elem.extract }}</p>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.15/vue.js"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.7.0/vue-resource.min.js"/>
+    <link rel="stylesheet" type="text/css" href="style.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.1.2/foundation.min.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" media="screen"/>
+    <script src="index.js"/>
+  </head>
+  <body>
+    <div class="row column header" id="wikiApp">
+      <h1 class="cover-heading">Wikipedia Search <i class="fa fa-search"></i></h1>
+      <div class="medium-6 medium-offset-3 ctrl">
+        <form class="searchForm" @submit.prevent="submitSearch">
+          <input type="text" v-model="searchQuery" placeholder="Type here and press enter">
+          <span v-show="searchQuery" class="removeInput" @click="removeSearchQuery">+</span>
+        </form>
+        <a class="raised-button ink" @click="submitSearch"><i class="fa fa-search"></i> Search</a>
+        <a class="raised-button ink" href="http://en.wikipedia.org/wiki/Special:Random" target="_blank"><i class="fa fa-random"></i> Random Article</a>
       </div>
-    </a>
-  </div>
-</div>
+      <div class="searchResult" v-show="isResult" transition="expand">
+        <a href="http://en.wikipedia.org/?curid={{ elem.pageid }}" v-for="elem in wikiObj">
+          <div class="medium-8 medium-offset-2 columns card">
+            <h1 class="text-headline">{{ elem.title }}</h1>
+            <p class="text-body-1">{{ elem.extract }}</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </body>
 </html>
