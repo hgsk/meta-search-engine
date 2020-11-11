@@ -1,0 +1,21 @@
+<html>
+<div class="row column header" id="wikiApp">
+  <h1 class="cover-heading">Wikipedia Search <i class="fa fa-search"></i></h1>
+  <div class="medium-6 medium-offset-3 ctrl">
+    <form class="searchForm" @submit.prevent="submitSearch">
+      <input type="text" v-model="searchQuery" placeholder="Type here and press enter">
+      <span v-show="searchQuery" class="removeInput" @click="removeSearchQuery">+</span>
+    </form>
+    <a class="raised-button ink" @click="submitSearch"><i class="fa fa-search"></i> Search</a>
+    <a class="raised-button ink" href="http://en.wikipedia.org/wiki/Special:Random" target="_blank"><i class="fa fa-random"></i> Random Article</a>
+  </div>
+  <div class="searchResult" v-show="isResult" transition="expand">
+    <a href="http://en.wikipedia.org/?curid={{ elem.pageid }}" v-for="elem in wikiObj">
+      <div class="medium-8 medium-offset-2 columns card">
+        <h1 class="text-headline">{{ elem.title }}</h1>
+        <p class="text-body-1">{{ elem.extract }}</p>
+      </div>
+    </a>
+  </div>
+</div>
+</html>
